@@ -5,7 +5,7 @@ include("functions.php");
 $start = timer();
 
 include("config.php");
-include("bitcoin.inc");
+include_once ("includes/jsonRPCClient.php");
 include("address.inc");
 include("recaptchalib.inc");
 include ("adscaptchalib.inc");
@@ -16,7 +16,7 @@ $privatekey = "6LfYSssSAAAAAPntQz9H0twbsdyk8kQHO_F4mupD";
 
 // init
 
-$btclient = new bitcoinClient("http",$btclogin["username"],$btclogin["password"],$btclogin["host"],$btclogin["port"]);
+$btclient = new jsonRPCClient("http://". $btclogin["username"] . ':' . $btclogin["password"] . '@' .$btclogin["host"] . ':' . $btclogin["port"]);
 $addr = new Address($btclient,$sqlogin);
 $derp = $btclient->getinfo();
 
