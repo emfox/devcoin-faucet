@@ -8,6 +8,7 @@
 include ('core/banned.php');
 include_once ("core/wallet.php");
 include_once ('templates/header.php');
+include_once ('core/includes/simpl_html_dom.php');
 //include ('core/dnsbl.php');
 
 $donaddress = $btclient->getaccountaddress($don_faucet);
@@ -43,6 +44,65 @@ if (strtolower(ValidateCaptcha($adscaptchaID, $adsprivkey, $challengeValue, $res
         die();
     } else {
     $address = trim($_POST['DVC']);
+    $bt_id = filter_var($_POST['BTorg'], FILTER_SANITIZE_NUMBER_INT);
+
+    if($bt_id!=''){
+
+echo "Bitcointalk.org id processing:<br>";
+$bt_profile=file_get_html("https://bitcointalk.org/index.php?action=profile;u=" . $bt_id);
+$not_new=false;
+foreach($bt_profile->find('div[id=bodyarea] td') as $temp_text)
+{
+  if($temp_text->plaintext=="Position: ")
+  {
+  $bt_position=$temp_text->next_sibling();
+  $not_new = strpos($bt_position,"Member");
+  break;
+  }
+}
+
+if($not_new!==false)
+{
+  $bt_sig=$bt_profile->find('div[class=signature]',0);
+  $has_devtome = strpos($bt_sig,"devtome.com");
+  if($has_devtome !== false){
+    $has_address = strpos($bt_sig,$address);
+    if($has_address !== false){
+      $next_pay_time=time()+(144+rand(0,48))*3600;
+      mysql_query("insert into bitcointalk (uid, status,address,next_date)
+                   select '$bt_id', '1', '$address','$next_pay_time' from dual
+                   where not exists (select * from bitcointalk where uid=$bt_id)") or die(mysql_error());
+      $btclient->sendfrom("FaucetDonations",$address,50);
+      echo "We have successfully paid you 50 DVCs out, another 100 DVCs will be at about a week later.";
+    }else{
+      echo "Error: You should write your devcoin address to your signature.";
+    }
+  }else{
+    echo "Error: You should add devtome promotion to your signature!";
+  }
+}else{
+echo "Error: Invalid id or your bitcointalk account is too new!";
+}
+echo "<br><br><br>";
+    }
+
+    $cur_time=time();
+    $coins_in_account = $btclient->getbalance("FaucetDonations", 0);
+    $list = mysql_query("SELECT * FROM bitcointalk where status = 1 and next_date < '$cur_time'");
+    $paynum = mysql_num_rows($list);
+    if($paynum > 0 and $coins_in_account >= 100*$paynum){
+      $addr_list = array();
+      while ($listw = mysql_fetch_array($list)) {
+	if(strpos(file_get_html("https://bitcointalk.org/index.php?action=profile;u=" . $listw['uid']),"devtome.com")!==false){
+	  $addr_list[$listw['address']] = 100;
+	}else{
+	  mysql_query("update bitcointalk set status=3 where uid=" . $listw['uid']);
+	}
+      }
+      $btclient->sendmany("FaucetDonations", $addr_list);
+      mysql_query("update bitcointalk set status=2 where status = 1 and next_date < '$cur_time'");
+    }
+
             mysql_query("INSERT INTO dailyltc (ltcaddress, ip)
     SELECT * FROM (SELECT '$address', '$ip') AS tmp
     WHERE NOT EXISTS (
