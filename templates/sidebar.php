@@ -4,19 +4,18 @@ include ('core/daily.php');
 echo '
             <div style="margin-right: 10px;">
             <h3><center>Faucet statistics</center></h3>
-            <table class=\'zebra-striped\'>
-                        <tr><td>Submitted This Round: </td><td>' . $rows2 . '</td></tr>
-<tr><td>Current Payout: </td><td>' . $roundltc . ' BTC</td></tr> 
-<tr><td>Current Round: </td><td>' . $round . ' BTC</td></tr>
-            <tr><td>Total Payout: </td><td>' . $dailytotal . ' BTC</td></tr>
+            <table class="zebra-striped">
+<tr><td>Current Round: </td><td>' . $round . ' </td></tr>
+   <tr><td>Submitted This Round: </td><td>' . $rows . ' persons</td></tr>
+<tr><td>Payout per Person: </td><td>' . $singlepay . ' DVC</td></tr> 
+            <tr><td>Total Paid: </td><td>' . $totalpay . ' DVC</td></tr>
 </table>';
 ?>
 
 <center>
-<p>Put your own stuff here.</p>
+<p>Future Ads here.</p>
 
 <br>
-</a>
-
 </center></div>
-          
+
+<iframe scrolling="no" style="border: 0; width: 250px; height: 250px;" src="http://coinurl.com/get.php?id=10911"></iframe>

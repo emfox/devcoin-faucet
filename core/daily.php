@@ -1,14 +1,11 @@
 <?
-$command = "SELECT * FROM roundltc,dailytotal,round";
+$command = "SELECT * FROM config where id = 1";
 $q = mysql_query($command);
+$singlepay = mysql_result($q, 0, "singlepay");
+$round = mysql_result($q, 0, "round");
+$totalpay = mysql_result($q, 0, "totalpay");
+
 $dltc = mysql_query("SELECT * FROM `dailyltc`");
-$rows = mysql_num_rows($q);
-$rows2 = mysql_num_rows($dltc);
-$i = 0;
-while ($i < $rows) {
-    $roundltc = mysql_result($q, $i, "roundltc");
-    $dailytotal = mysql_result($q, $i, "dailytotal");
-    $round = mysql_result($q, $i, "round");
-    $i++;
-    }
+$rows = mysql_num_rows($dltc);
+
 ?>

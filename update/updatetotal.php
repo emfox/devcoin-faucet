@@ -3,14 +3,14 @@
  * @author Greedi
  * @copyright 2012
  */
-include('/var/www/faucet/core/wallet.php');
+include('../core/wallet.php');
 
-$dailytotal = $_POST['dailytotal'];
+$totalpay = $_POST['totalpay'];
 
-    mysql_query("UPDATE dailytotal SET dailytotal = $dailytotal") 
+    mysql_query("UPDATE config SET totalpay = $totalpay") 
     or die(mysql_error());
     
-  header( 'Location: http://beprivate.info/faucet/server.php' ) ; 
+  header( 'Location: http://d.evco.in/faucet/server.php' ) ; 
 ?>
 
 

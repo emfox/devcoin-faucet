@@ -15,25 +15,20 @@ include ('templates/header.php');
         <div class="row">
         <div class="span10">
 <?php
-if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1") {
+if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1" and $_SERVER['REMOTE_ADDR'] != "106.187.97.66") {
     echo '<div class="alert-message error" data-alert="alert" style="margin-right: 20px;"><a class="close" onclick="\$().alert()" href="#">&times</a><p>Access Denied.</p></div>';
 } else {
     $finishing_divs = "</div></div>";
-    $command = "SELECT * FROM roundltc,dailytotal,round";
+    $command = "SELECT * FROM config";
     $q = mysql_query($command);
+    $singlepay = mysql_result($q, 0, "singlepay");
+    $round = mysql_result($q, 0, "round");
+    $totalpay = mysql_result($q, 0, "totalpay");
     $dltc = mysql_query("SELECT * FROM `dailyltc`");
-    $rows = mysql_num_rows($q);
     $rows2 = mysql_num_rows($dltc);
     $subcommand = "SELECT * FROM subtotal";
     $subq = mysql_query($subcommand);
     $subrows = mysql_num_rows($subq);
-    $i = 0;
-    while ($i < $rows) {
-        $roundltc = mysql_result($q, $i, "roundltc");
-        $dailytotal = mysql_result($q, $i, "dailytotal");
-        $round = mysql_result($q, $i, "round");
-        $i++;
-    }
 
    echo '
             <div style="margin-right: 20px;">
@@ -41,11 +36,11 @@ if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1") {
             <table class=\'zebra-striped\'>
             <tr><td>Submitted This Round: </td><td>' . $rows2 . '</td></tr>
             <tr><td>Current Round: </td><td>' . $round . '</td></tr>
-            <tr><td>Payout This Round: </td><td>' . $roundltc . ' BTC</td></tr>
-            <tr><td>Total Payout: </td><td>' . $dailytotal . ' BTC</td></tr>
+            <tr><td>Payout This Round: </td><td>' . $singlepay . ' DVC</td></tr>
+            <tr><td>Total Payout: </td><td>' . $totalpay . ' DVC</td></tr>
             <tr><td>Total Submitted: </td><td>' . $subrows . '</td></tr> 
             <tr><td>Donate: </td><td>' . $btclient->getbalance($don_faucet, 0) .
-        ' BTC</td></tr>
+        ' DVC</td></tr>
         <tr><td>Donation address: </td><td>' . $btclient->getaccountaddress($don_faucet) .
         '</td></tr>  
             </table>';
@@ -55,22 +50,22 @@ if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1") {
             <div style="margin-right: 20px;">
             <h3>Daily settings</h3>
             <table class=\'zebra-striped\'>
-    <form action="update/updateroundltc" method="post">
+    <form action="update/updatesinglepay.php" method="post">
     <input type="hidden" name="ud_id" value="">
-    Round Price: <input type="text" name="roundltc" value="">
+    Round Price: <input type="text" name="singlepay" value="">
     <input type="Submit" value="Update">
     </form></table>
-    <form action="update/updatetotal" method="post">
+    <form action="update/updatetotal.php" method="post">
     <input type="hidden" name="ud_id" value="">
-    Total Paid Out: <input type="text" name="dailytotal" value="">
+    Total Paid Out: <input type="text" name="totalpay" value="">
     <input type="Submit" value="Update">
     </form></table>
-    <form action="update/updateround" method="post">
+    <form action="update/updateround.php" method="post">
     <input type="hidden" name="ud_id" value="">
     Current Round: <input type="text" name="round" value="">
     <input type="Submit" value="Update">
     </form></table>
-    <form action="update/updateaddresses" method="post">
+    <form action="update/updateaddresses.php" method="post">
     <input type="hidden" name="ud_id" value="">
     Delete Round: <input type="Submit" value="Update">
     </form></table>

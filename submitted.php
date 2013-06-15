@@ -33,45 +33,47 @@ function ordinal($a)
 }
 if (strtolower(ValidateCaptcha($adscaptchaID, $adsprivkey, $challengeValue, $responseValue,
     $remoteAddress)) == "true") {
-    $isvalid = $btclient->validateaddress($_POST['BTC']);
+    $isvalid = $btclient->validateaddress(trim($_POST['DVC']));
     if ($isvalid['isvalid'] != '1') {
 
-        echo "Invalid Address: {$_POST['BTC']}";
+        echo "Invalid Address: {$_POST['DVC']}";
         echo "</center></div>";
         include ('templates/sidebar.php');
         include ('templates/footer.php');
         die();
     } else {
-    $ltcaddress = $_POST['BTC'];
+    $address = trim($_POST['DVC']);
             mysql_query("INSERT INTO dailyltc (ltcaddress, ip)
-    SELECT * FROM (SELECT '$ltcaddress', '$ip') AS tmp
+    SELECT * FROM (SELECT '$address', '$ip') AS tmp
     WHERE NOT EXISTS (
     SELECT ip FROM dailyltc WHERE ip = '$ip'
     ) LIMIT 1;") or die(mysql_error());
 
-            mysql_query("INSERT INTO subtotal (ltcaddress, ip) VALUES('$ltcaddress', '$ip' ) ") or
+            mysql_query("INSERT INTO subtotal (ltcaddress, ip) VALUES('$address', '$ip' ) ") or
                 die(mysql_error());
             $command = "SELECT * FROM dailyltc";
             $q = mysql_query($command);
             $rows = mysql_num_rows($q);
-            $entries_needed = 150;
-            if ($rows > $entries_needed) {
-                $command = "SELECT * FROM roundltc";
+            $entries_needed = 30;
+            if ($rows >= $entries_needed) {
+                $command = "SELECT * FROM config";
                 $q = mysql_query($command);
                 $res = mysql_fetch_array($q);
                 $list = mysql_query("SELECT * FROM dailyltc");
 
-                $coins_in_account = $btclient->getbalance("SendOut", 0);
-                if ($coins_in_account >= ($res['roundltc'] * $rows)) {
+                $coins_in_account = $btclient->getbalance("FaucetDonations", 0);
+                if ($coins_in_account >= ($res['singlepay'] * $rows)) {
+		    $addr_list = array();
                     while ($listw = mysql_fetch_array($list)) {
-                        $btclient->sendfrom("SendOut", $listw['btcaddres'], $res['roundltc']);
+		      $addr_list[$listw['ltcaddress']] = doubleval($res['singlepay']);
                     }
+		    $btclient->sendmany("FaucetDonations", $addr_list);
                     $n = ordinal(mysql_num_rows($list));
                     echo srsnot("Congratulations, you were the {$n} in the round, the round has been reset and payouts have been sent.");
                     mysql_query("TRUNCATE dailyltc");
-                    mysql_query("UPDATE round set round=round+1");
-                    $totalc = $res['roundltc'] * $rows;
-                    mysql_query("UPDATE dailytotal set total=total+{$totalc}");
+                    mysql_query("UPDATE config set round=round+1");
+                    $totalc = $res['singlepay'] * $rows;
+                    mysql_query("UPDATE config set totalpay=totalpay+{$totalc}");
                     echo "</center></div>";
                     include ('templates/sidebar.php');
                     include ('templates/footer.php');
@@ -89,12 +91,12 @@ if (strtolower(ValidateCaptcha($adscaptchaID, $adsprivkey, $challengeValue, $res
 
             //echo "printed.";
             // echo "</table>";
-            echo "You will get your BTC at the end of this round<br />There are $rows submitted addresses in this round!<br>";
+            echo "You will get your DVC at the end of this round<br />There are $rows submitted addresses in this round!<br>";
             echo "<br>If you want to donate to the Faucet: $donaddress (recv: $don)";
         }
     
 } else { // Wrong answer, you may display a new AdsCaptcha and add an error message
-    echo srserr("INVALID CAPTCHA. <a href='/index.php'>Go back</a>");
+    echo srserr("INVALID CAPTCHA. <a href='index.php'>Go back</a>");
 }
 ?>
 </center>

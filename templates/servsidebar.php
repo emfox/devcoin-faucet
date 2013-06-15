@@ -24,12 +24,10 @@ echo '
             <div style="margin-right: 10px;">
             <h3><center>Faucet statistics</center></h3>
             <table class=\'zebra-striped\'>
-                        <tr><td>Submitted This Round: </td><td>' . $rows2 . '</td></tr>
-<tr><td>Current Payout: </td><td>' . $roundltc . ' BTC</td></tr> 
-<tr><td>Current Round: </td><td>' . $round . ' BTC</td></tr>
-            <tr><td>Total Payout: </td><td>' . $dailytotal . ' BTC</td></tr>
-            <tr><td>Total Submitted: </td><td>' . $subrows . '</td></tr>
+<tr><td>Current Round: </td><td>' . $round . ' </td></tr>
+   <tr><td>Submitted This Round: </td><td>' . $rows . ' persons</td></tr>
+<tr><td>Payout per Persion: </td><td>' . $singlepay . ' DVC</td></tr> 
+            <tr><td>Total Payout: </td><td>' . $totalpay . ' DVC</td></tr>
 </table>';
-
 ?>
           </div>
