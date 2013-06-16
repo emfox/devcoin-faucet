@@ -3,8 +3,9 @@
       </div>
  
  <footer>
-<center><p style="font-size: 11px;">Donate to Faucet: <?=$btclient->getaccountaddress($don_faucet);?> (recv: <?=$btclient->getbalance($don_faucet,0)?> BTC)</p>
-<center><p>Made By Greedi &copy; 2012</p>
+<center><a href="http://www.devtome.com/"><img src="http://www.devtome.com/lib/exe/fetch.php?media=devcoin_leaderboard_tosku.png" /></a></center>
+<center><p style="font-size: 11px;">Donate to Faucet: <?=$btclient->getaccountaddress($don_faucet);?> (recv: <?=$btclient->getbalance($don_faucet,0)?> DVC)</p>
+<center><p>Emfox Zhou &copy; 2013</p>
 </footer>
 </center>
 

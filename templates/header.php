@@ -6,9 +6,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bitcoin Faucet</title>
-    <meta name="description" content="Bitcoin Faucet">
-    <meta name="Greedi" content="BTC">
+    <title>Devcoin Faucet</title>
+    <meta name="description" content="Devcoin Faucet">
+    <meta name="Emfox Zhou" content="DVC">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -80,7 +80,7 @@
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="/"><font style="font-size: 20px;">Faucet</font><font style="font-size: 9px; "></font> </a>
+          <a class="brand" href="http://faucet.d.evco.in"><font style="font-size: 20px;">Home</font><font style="font-size: 9px; "></font> </a>
           <ul class="nav">
           <?
 // menu
@@ -107,7 +107,7 @@ function mnu_btn($link, $title, $preg = false)
 
 ?>
           </ul>
-<div class="pull-right" style="color: #fff; padding-top: 11px; font-size: 11px;">Blockcount: <?=number_format($derp["blocks"]);?> - Difficulty: <? echo $derp['difficulty'];?> - version <?=$derp[version]?> with <?=$derp["connections"]?> p2p nodes</div>
+<div class="pull-right" style="color: #fff; padding-top: 11px; font-size: 11px;">Blockcount: <?=number_format($derp["blocks"]);?> - Difficulty: <? echo $derp['difficulty'];?> - version <?=$derp['version']?> with <?=$derp["connections"]?> p2p nodes</div>
 </div>
        
       </div>
