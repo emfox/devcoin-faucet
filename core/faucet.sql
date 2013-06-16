@@ -1,107 +1,89 @@
--- phpMyAdmin SQL Dump
--- version 3.3.7deb7
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (i686)
 --
--- Host: localhost
--- Generation Time: Aug 17, 2012 at 02:48 PM
--- Server version: 5.1.63
--- PHP Version: 5.3.3-7+squeeze13
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
+-- Host: localhost    Database: faucet
+-- ------------------------------------------------------
+-- Server version	5.5.31-1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `faucet`
+-- Table structure for table `bitcointalk`
 --
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `bitcointalk`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bitcointalk` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `status` int(5) DEFAULT NULL,
+  `address` char(35) DEFAULT NULL,
+  `uid` int(6) DEFAULT NULL,
+  `next_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `config`
+--
+
+DROP TABLE IF EXISTS `config`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `config` (
+  `singlepay` float DEFAULT NULL,
+  `round` int(11) DEFAULT NULL,
+  `totalpay` float DEFAULT NULL,
+  `id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `dailyltc`
 --
 
-CREATE TABLE IF NOT EXISTS `dailyltc` (
+DROP TABLE IF EXISTS `dailyltc`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dailyltc` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `ltcaddress` char(34) NOT NULL,
   `ip` char(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `dailyltc`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `dailytotal`
---
-
-CREATE TABLE IF NOT EXISTS `dailytotal` (
-  `dailytotal` char(34) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `dailytotal`
---
-
-INSERT INTO `dailytotal` (`dailytotal`) VALUES
-('0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `round`
---
-
-CREATE TABLE IF NOT EXISTS `round` (
-  `round` char(34) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `round`
---
-
-INSERT INTO `round` (`round`) VALUES
-('0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roundltc`
---
-
-CREATE TABLE IF NOT EXISTS `roundltc` (
-  `roundltc` char(34) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `roundltc`
---
-
-INSERT INTO `roundltc` (`roundltc`) VALUES
-('0');
-
--- --------------------------------------------------------
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `subtotal`
 --
 
-CREATE TABLE IF NOT EXISTS `subtotal` (
+DROP TABLE IF EXISTS `subtotal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `subtotal` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `ltcaddress` char(34) NOT NULL,
   `ip` char(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=3493 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Dumping data for table `subtotal`
---
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+-- Dump completed on 2013-06-16 15:39:24
