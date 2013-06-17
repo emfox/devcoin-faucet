@@ -68,12 +68,16 @@ if($not_new!==false)
   if($has_devtome !== false){
     $has_address = strpos($bt_sig,$address);
     if($has_address !== false){
-      $next_pay_time=time()+(144+rand(0,48))*3600;
-      mysql_query("insert into bitcointalk (uid, status,address,next_date)
-                   select '$bt_id', '1', '$address','$next_pay_time' from dual
-                   where not exists (select * from bitcointalk where uid=$bt_id)") or die(mysql_error());
-      $btclient->sendfrom("FaucetDonations",$address,50);
-      echo "We have successfully paid you 50 DVCs out, another 100 DVCs will be at about a week later.";
+      $indb = mysql_num_rows(mysql_query("select id from bitcointalk where uid=" . $bt_id ));
+      if($indb == 0){
+        $next_pay_time=time()+(144+rand(0,48))*3600;
+        mysql_query("insert into bitcointalk (uid, status,address,next_date)
+                   values ('$bt_id', '1', '$address','$next_pay_time')") or die(mysql_error());
+        $btclient->sendfrom("FaucetDonations",$address,50);
+        echo "We've now paid you 50 DVCs out, another 100 DVCs will be send several days later.";
+      }else{
+        echo "This account is already submitted!";
+      }
     }else{
       echo "Error: You should write your devcoin address to your signature.";
     }
