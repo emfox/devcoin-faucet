@@ -118,7 +118,7 @@ echo "<br><br><br>";
             $command = "SELECT * FROM dailyltc";
             $q = mysql_query($command);
             $rows = mysql_num_rows($q);
-            $entries_needed = 30;
+            $entries_needed = 80;
             if ($rows >= $entries_needed) {
                 $command = "SELECT * FROM config";
                 $q = mysql_query($command);

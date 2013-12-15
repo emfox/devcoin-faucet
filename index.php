@@ -15,7 +15,7 @@ include ('core/includes/simpl_html_dom.php');
 <h2>The Devcoin Faucet</h2>
 <ul>
 <li>NEW!!Input your BitcoinTalk.org Member ID to get more DVCs! you should refer to <a href="https://bitcointalk.org/index.php?topic=191553.msg1983573" target="_blank">this thread</a> first</li>
-<li>Due to more people coming, we have increase the submits every round needed to 30.
+<li>Due to more people coming, we have increase the submits every round needed to 80.
 <li>To reduce transcation fees, payout will happen when there are enough people submitted. Now the number is 30.</li>
 <li>You can only submit once per round, if we detect the same IP or a proxy, you'll not be paid.</li>
 <li>If you need more devcoins, you could buy more via <a href="https://vircurex.com/welcome/index?referral_id=295-8299">vircurex.com</a>, use <a href="https://vircurex.com/welcome/index?referral_id=295-8299" target="_blank">our sponsored link to signup</a> to have fee reduced.</li>
