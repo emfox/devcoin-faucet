@@ -107,7 +107,14 @@ function mnu_btn($link, $title, $preg = false)
 
 ?>
           </ul>
-<div class="pull-right" style="color: #fff; padding-top: 11px; font-size: 11px;">Blockcount: <?=number_format($derp["blocks"]);?> - Difficulty: <? echo $derp['difficulty'];?> - version <?=$derp['version']?> with <?=$derp["connections"]?> p2p nodes</div>
+<div class="pull-right" style="color: #fff; padding-top: 11px; font-size: 11px;">
+ Blockcount: <?=number_format($derp["blocks"]);?> 
+- Difficulty: <? echo $derp['difficulty'];?> 
+- Estimate time of next round: <?$varb = $derp["blocks"];
+ $vart =1375479729+(time()-1375479729)*(ceil(($varb+1)/4000)*4000-100000)/($varb-100000);
+ echo date('Y-m-d H:i:s',$vart);
+//block 100000 generated at unix time 1375479729 ?>
+</div>
 </div>
        
       </div>
