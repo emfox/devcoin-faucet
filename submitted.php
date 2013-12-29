@@ -34,16 +34,15 @@ function ordinal($a)
 }
 if (strtolower(ValidateCaptcha($adscaptchaID, $adsprivkey, $challengeValue, $responseValue,
     $remoteAddress)) == "true") {
-    $isvalid = $btclient->validateaddress(trim($_POST['DVC']));
-    if ($isvalid['isvalid'] != '1') {
-
-        echo "Invalid Address: {$_POST['DVC']}";
+    $address=filter_var(trim($_POST['DVC']),FILTER_SANITIZE_STRING);
+    $isvalid = $btclient->validateaddress($address);
+    if (!ctype_alnum($address) OR $isvalid['isvalid'] != '1') {
+        echo "Invalid Address: {$address}";
         echo "</center></div>";
         include ('templates/sidebar.php');
         include ('templates/footer.php');
         die();
     } else {
-    $address = trim($_POST['DVC']);
     $bt_id = filter_var($_POST['BTorg'], FILTER_SANITIZE_NUMBER_INT);
 
     if($bt_id!=''){
