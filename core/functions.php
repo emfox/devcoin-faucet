@@ -1,4 +1,4 @@
-<?
+<?php
 function returntimer ($pagetimer) {
   // better then previous but still bit shitty assumes all pages are +10ms :)
   $timer = timer()-$pagetimer;

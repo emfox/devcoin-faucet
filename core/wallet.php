@@ -1,4 +1,4 @@
-<?
+<?php
 // LTC WALLET
 session_start();
 include("functions.php");

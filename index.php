@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * @author Greedi
  * @copyright 2012
@@ -35,7 +35,7 @@ echo GetCaptcha($adscaptchaID, $adspubkey);
 <td colspan="3" align="center"><input type="submit" value="Submit"></td>
 </center>
 </div>
-<?
+<?php
 include ("templates/sidebar.php");
 include ('templates/footer.php');
 ?>

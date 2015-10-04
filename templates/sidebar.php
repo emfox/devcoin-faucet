@@ -1,5 +1,5 @@
 <div class="span4"> <!-- This is the sidebar, don't forget -_- -->
-<?
+<?php
 include ('core/daily.php');
 echo '
             <div style="margin-right: 10px;">
@@ -19,4 +19,3 @@ echo '
 </center></div>
 
 <iframe scrolling="no" style="border: 0; width: 200px; height: 200px;" src="http://coinurl.com/get.php?id=10911"></iframe>
-<iframe src="http://bitcoinadvertisers.com/a.php?p=1EmfoxtJWrJg8bJvPrMLhaCzSHzHESS2oP&a=1&bg=FFFFFF&link=3366FF&text=414141" scrolling="no" style="width:155px;height:155px;border:1px solid #f2f2f2;"></iframe>

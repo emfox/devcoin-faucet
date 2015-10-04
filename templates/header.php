@@ -1,4 +1,4 @@
-<?
+<?php
 //ini_set("display_errors", 1);
 ?>
 <!DOCTYPE html>
@@ -80,9 +80,9 @@
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="http://faucet.d.evco.in"><font style="font-size: 20px;">Home</font><font style="font-size: 9px; "></font> </a>
+          <a class="brand" href="http://faucet.devcoin.org"><font style="font-size: 20px;">Home</font><font style="font-size: 9px; "></font> </a>
           <ul class="nav">
-          <?
+          <?php
 // menu
  mnu_btn("index.php", "Faucet");
 if ($_SERVER['REMOTE_ADDR'] == "127.0.0.1")
@@ -108,12 +108,13 @@ function mnu_btn($link, $title, $preg = false)
 ?>
           </ul>
 <div class="pull-right" style="color: #fff; padding-top: 11px; font-size: 11px;">
- Blockcount: <?=number_format($derp["blocks"]);?> 
-- Difficulty: <? echo $derp['difficulty'];?> 
-- Estimate time of next round: <?$varb = $derp["blocks"];
+ Blockcount: <?php echo number_format($derp["blocks"]);?> 
+- Difficulty: <?php echo $derp['difficulty'];?> 
+- Estimate time of next round: <?php $varb = $derp["blocks"];
  $vart =1375479729+(time()-1375479729)*(ceil(($varb+1)/4000)*4000-100000)/($varb-100000);
  echo date('Y-m-d H:i:s',$vart);
-//block 100000 generated at unix time 1375479729 ?>
+//block 100000 generated at unix time 1375479729
+?>
 </div>
 </div>
        

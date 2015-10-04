@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * @author Greedi
  * @copyright 2012
@@ -8,7 +8,7 @@ include ('core/daily.php');
 ?>
 <div class="span4"> <!-- This is the servsidebar, don't forget -_- -->
 
-<?
+<?php
 echo '
             <div style="margin-right: 20px;">
             <h3><center>Bitcoin statistics</center></h3>
@@ -19,7 +19,7 @@ echo '
             </table>';
             ?>
             </div>
-            <?
+            <?php
 echo '
             <div style="margin-right: 10px;">
             <h3><center>Faucet statistics</center></h3>

@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * @author Greedi
@@ -70,7 +70,7 @@ if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1" and $_SERVER['REMOTE_ADDR'] != "106.1
     Delete Round: <input type="Submit" value="Update">
     </form></table>
     </div>
-<?
+<?php
     echo '
             <div style="margin-right: 20px;">
             <h3>Bitcoind statistics</h3>
@@ -152,7 +152,7 @@ if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1" and $_SERVER['REMOTE_ADDR'] != "106.1
 <th><font face="Arial, Helvetica, sans-serif"><center>IP</center></font></th>
 </tr>
 
-<?
+<?php
     $i = 0;
     while ($i < $rows2) {
         $qltc = "SELECT * FROM dailyltc";
@@ -169,7 +169,7 @@ if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1" and $_SERVER['REMOTE_ADDR'] != "106.1
 <td><font face="Arial, Helvetica, sans-serif"><center><? echo $ip; ?></center></font></td>
 </tr>
 
-<?
+<?php
         $i++;
     }
 
@@ -177,7 +177,7 @@ if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1" and $_SERVER['REMOTE_ADDR'] != "106.1
 
 
 ?>
-<?
+<?php
 echo $finishing_divs;
     include ('templates/servsidebar.php');
 }
