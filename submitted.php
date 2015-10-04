@@ -20,10 +20,6 @@ $don = $btclient->getbalance($don_faucet, 0);
 <center>
 <br />
 <?php
-$ip = $_SERVER['REMOTE_ADDR'];
-$challengeValue = $_POST['adscaptcha_challenge_field'];
-$responseValue = $_POST['adscaptcha_response_field'];
-$remoteAddress = $_SERVER["REMOTE_ADDR"];
 function ordinal($a)
 {
     $b = abs($a);
@@ -32,8 +28,9 @@ function ordinal($a)
         ($c < 1) ? 'th' : 'st' : 'nd' : 'rd' : 'th'));
     return $a . $e;
 }
-if (strtolower(ValidateCaptcha($adscaptchaID, $adsprivkey, $challengeValue, $responseValue,
-    $remoteAddress)) == "true") {
+$recaptcha = new \ReCaptcha\ReCaptcha($recaptcha_secret);
+$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+if ($resp->isSuccess()) {
     $address=filter_var(trim($_POST['DVC']),FILTER_SANITIZE_STRING);
     $isvalid = $btclient->validateaddress($address);
     if (!ctype_alnum($address) OR $isvalid['isvalid'] != '1') {

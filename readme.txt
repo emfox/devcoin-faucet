@@ -1,10 +1,12 @@
+Update by Emfox for Devcoin faucet 2013-2015
+to install reCAPTCHA php lib, run 'composer update'
+
 bitcoin faucet public release
 ------------------------------------------
 Forum Thread: https://bitcointalk.org/index.php?topic=101407.0
 this is the simplest version of it, other might get released in time
 
 made by Greedi 2012 (c)
-
 
 INSTALL:
 put files in www dir, edit config.php with proper values

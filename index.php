@@ -10,6 +10,7 @@ include ('core/includes/simpl_html_dom.php');
 //include ('core/dnsbl.php');
 
 ?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <div class="row">
           <div class="span10">
 <h2>The Devcoin Faucet</h2>
@@ -29,9 +30,7 @@ include ('core/includes/simpl_html_dom.php');
 <td><input type="text" name="DVC"></td><br />
 <td class="tdr"><font color="green">BitcoinTalk.org Member ID:</font></td>
 <td><input type="text" name="BTorg" title="Input your BitcoinTalk.org Member ID to get more DVCs! you should refer to https://bitcointalk.org/index.php?topic=191553.msg1983573 first" value="e.g. 12345. optional" onfocus="this.value='';"></td>
-<?php
-echo GetCaptcha($adscaptchaID, $adspubkey);
-?>
+<div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_key; ?>"></div>
 <td colspan="3" align="center"><input type="submit" value="Submit"></td>
 </center>
 </div>
