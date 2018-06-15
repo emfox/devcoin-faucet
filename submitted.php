@@ -20,6 +20,7 @@ $don = $btclient->getbalance($don_faucet, 0);
 <center>
 <br />
 <?php
+$ip = $_SERVER['REMOTE_ADDR'];
 function ordinal($a)
 {
     $b = abs($a);
