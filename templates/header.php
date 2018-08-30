@@ -7,82 +7,36 @@ require_once __DIR__ . '/../vendor/autoload.php';
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Devcoin Faucet</title>
     <meta name="description" content="Devcoin Faucet">
     <meta name="Emfox Zhou" content="DVC">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Le styles -->
-    <link rel="stylesheet/less" type="text/css" href="lib/bootstrap.less">
-    <script src="js/less-1.1.5.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap-alerts.js" /></script>
-    <script src='/js/jquery-1.6.4.js'></script>
-    <style type="text/css">
-      /* Override some defaults */
-      html, body {
-        background-color: #eee;
-      }
-      body {
-        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
-      }
-      .container > footer p {
-        text-align: center; /* center align it with the container */
-      }
-      .container {
-        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
-      }
-
-      /* The white background content wrapper */
-      .container > .content {
-        background-color: #fff;
-        padding: 20px;
-        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-        -webkit-border-radius: 0 0 6px 6px;
-           -moz-border-radius: 0 0 6px 6px;
-                border-radius: 0 0 6px 6px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-                box-shadow: 0 1px 2px rgba(0,0,0,.15);
-      }
-
-/* Page header tweaks */
-      .page-header {
-        background-color: #f5f5f5;
-        padding: 20px 20px 10px;
-        margin: -20px -20px 20px;
-      }
-
-      /* Styles you shouldn't keep as they are for displaying this base example only */
-      .content .span10,
-      .content .span4 {
-        min-height: 500px;
-      }
-      /* Give a quick and non-cross-browser friendly divider */
-      .content .span4 {
-        margin-left: 0;
-        padding-left: 19px;
-        border-left: 1px solid #eee;
-      }
-
-      .topbar .btn {
-        border: 0;
-      }
-
-    </style>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- Bootstrap depend on jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="favicon.ico">
   </head>
+
   <body>
-    <div class="topbar">
-      <div class="fill">
-        <div class="container">
-          <a class="brand" href="http://faucet.devcoin.org"><font style="font-size: 20px;">Home</font><font style="font-size: 9px; "></font> </a>
-          <ul class="nav">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="https://faucet.d.evco.in">Home</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
           <?php
 // menu
  mnu_btn("index.php", "Faucet");
@@ -108,19 +62,17 @@ function mnu_btn($link, $title, $preg = false)
 
 ?>
           </ul>
-<div class="pull-right" style="color: #fff; padding-top: 11px; font-size: 11px;">
- Blockcount: <?php echo number_format($derp["blocks"]);?> 
-- Difficulty: <?php echo $derp['difficulty'];?> 
-- Estimate time of next round: <?php $varb = $derp["blocks"];
- $vart =1375479729+(time()-1375479729)*(ceil(($varb+1)/4000)*4000-100000)/($varb-100000);
- echo date('Y-m-d H:i:s',$vart);
-//block 100000 generated at unix time 1375479729
-?>
-</div>
-</div>
-       
+          <p class="navbar-text navbar-right small">
+            Blockcount: <?php echo number_format($derp["blocks"]);?> 
+            - Difficulty: <?php echo $derp['difficulty'];?> 
+            - Estimate time of next round: <?php $varb = $derp["blocks"];
+            $vart =1375479729+(time()-1375479729)*(ceil(($varb+1)/4000)*4000-100000)/($varb-100000);
+            echo date('Y-m-d H:i:s',$vart);
+            //block 100000 generated at unix time 1375479729
+            ?>
+          </p>
+        </div>
       </div>
-    </div>
+    </nav>
     <div class="container">
-      <div class="content">
       <!-- END HEADER.PHP -->

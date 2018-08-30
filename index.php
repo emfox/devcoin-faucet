@@ -1,7 +1,6 @@
 <?php
 /**
- * @author Greedi
- * @copyright 2012
+ * @copyright Greedi 2012, Emfox Zhou 2013-2018
  */
 include ('core/banned.php');
 include ('core/wallet.php');
@@ -11,8 +10,8 @@ include ('core/includes/simpl_html_dom.php');
 
 ?>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <div class="row">
-          <div class="span10">
+      <div class="row">
+        <div class="col-md-8">
 <h2>The Devcoin Faucet</h2>
 <ul>
 <li>NEW!!Input your BitcoinTalk.org Member ID to get more DVCs! you should refer to <a href="https://bitcointalk.org/index.php?topic=191553.msg1983573" target="_blank">this thread</a> first</li>
@@ -33,7 +32,7 @@ include ('core/includes/simpl_html_dom.php');
 <div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_key; ?>"></div>
 <td colspan="3" align="center"><input type="submit" value="Submit"></td>
 </center>
-</div>
+        </div>
 <?php
 include ("templates/sidebar.php");
 include ('templates/footer.php');

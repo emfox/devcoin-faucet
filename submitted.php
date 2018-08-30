@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @author Greedi
- * @copyright 2012
- */
  error_reporting(E_ALL);
 include ('core/banned.php');
 include_once ("core/wallet.php");
@@ -15,8 +11,8 @@ $donaddress = $btclient->getaccountaddress($don_faucet);
 $don = $btclient->getbalance($don_faucet, 0);
 
 ?>
-<div class="row">
-<div class="span10">
+      <div class="row">
+        <div class="col-md-8">
 <center>
 <br />
 <?php
@@ -161,7 +157,7 @@ echo "<br><br><br>";
 }
 ?>
 </center>
-</div>
+      </div>
 <?php
 include ('templates/sidebar.php');
 include ('templates/footer.php');
