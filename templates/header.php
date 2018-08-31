@@ -36,32 +36,20 @@ require_once __DIR__ . '/../vendor/autoload.php';
           <a class="navbar-brand" href="https://faucet.d.evco.in">Home</a>
         </div>
         <div>
-          <ul class="nav navbar-nav">
-          <?php
-// menu
- mnu_btn("index.php", "Faucet");
-if ($_SERVER['REMOTE_ADDR'] == "127.0.0.1")
-    mnu_btn("server.php", "Server");
-
-
-
-function mnu_btn($link, $title, $preg = false)
-{
-
-    if (!$preg)
-        $preg = explode("?", $link);
-    else
-        $preg[0] = $preg;
-
-
-    if (preg_match("/" . str_replace("/", "\/", $preg[0]) . "/i", $_SERVER['SCRIPT_FILENAME']))
-        echo '<li class="active"><a href="' . $link . '">' . $title . '</a></li>';
-    else
-        echo '<li><a href="' . $link . '">' . $title . '</a></li>';
-}
-
-?>
+          <ul class="nav navbar-nav" id="nav-list">
+          <li><a href="/">Faucet</a></li>
+          <?php if (is_admin()) echo '<li><a href="/server.php">Server</a></li>' ?>
           </ul>
+          <script type="text/javascript">
+            $("#nav-list").find("li").each(function () {
+                var a = $(this).find("a:first")[0];
+                if ($(a).attr("href") === location.pathname) {
+                    $(this).addClass("active");
+                } else {
+                    $(this).removeClass("active");
+                }
+            });
+          </script>
           <p class="navbar-text navbar-right small">
             Blockcount: <?php echo number_format($derp["blocks"]);?> 
             - Difficulty: <?php echo $derp['difficulty'];?> 

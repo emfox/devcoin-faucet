@@ -6,7 +6,7 @@
 
 include ('core/daily.php');
 ?>
-<div class="span4"> <!-- This is the servsidebar, don't forget -_- -->
+<div class="col-md-4"> <!-- This is the servsidebar, don't forget -_- -->
 
 <?php
 echo '

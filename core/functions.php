@@ -25,6 +25,11 @@ function checkExistingIP($ip)
     $rows = mysql_num_rows($q);
     return $rows;
 }
+function is_admin()
+{
+  global $admin_ip;
+  return in_array($_SERVER['REMOTE_ADDR'], $admin_ip);
+}
 function srsnot($srserror) {
   return '          <div class="alert alert-success" style="margin-right: 20px;"><p>' . $srserror . '</p></div>';
 }

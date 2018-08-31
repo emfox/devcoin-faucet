@@ -12,11 +12,11 @@ $uptime = $uptime[0] . ', ' . $uptime[1];
 include ("core/wallet.php");
 include ('templates/header.php');
 ?>
-        <div class="row">
-        <div class="span10">
+      <div class="row">
+        <div class="col-md-8">
 <?php
-if ($_SERVER['REMOTE_ADDR'] != "127.0.0.1" and $_SERVER['REMOTE_ADDR'] != "106.187.97.66") {
-    echo '<div class="alert-message error" data-alert="alert" style="margin-right: 20px;"><a class="close" onclick="\$().alert()" href="#">&times</a><p>Access Denied.</p></div>';
+if ( !is_admin() ) {
+    echo '<div class="alert alert-warning"><p>Access Denied.</p></div>';
 } else {
     $finishing_divs = "</div></div>";
     $command = "SELECT * FROM config";
