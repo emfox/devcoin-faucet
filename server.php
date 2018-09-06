@@ -13,7 +13,7 @@ include ("core/wallet.php");
 include ('templates/header.php');
 ?>
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-sm-8">
 <?php
 if ( !is_admin() ) {
     echo '<div class="alert alert-warning"><p>Access Denied.</p></div>';
