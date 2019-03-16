@@ -7,8 +7,8 @@ include('../core/wallet.php');
 
 if(is_admin()){
     $totalpay = $_POST['totalpay'];
-    mysql_query("UPDATE config SET totalpay = $totalpay") 
-    or die(mysql_error());
+    mysqli_query($dbconn,"UPDATE config SET totalpay = $totalpay") 
+    or die(mysqli_error($dbconn));
     header( 'Location: /server.php' );
 }else{
     echo "Access Denied.";

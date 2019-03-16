@@ -8,8 +8,8 @@ include('../core/wallet.php');
 if(is_admin()){
     $round = $_POST['round'];
 
-    $result = mysql_query("UPDATE config SET round = $round") 
-    or die(mysql_error());
+    $result = mysqli_query($dbconn,"UPDATE config SET round = $round") 
+    or die(mysqli_error($dbconn));
     
     header( 'Location: /server.php' );
 }else{

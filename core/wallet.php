@@ -21,8 +21,8 @@ $addr = new Address($btclient,$sqlogin);
 $derp = $btclient->getinfo();
 
 //$this->PDO_Conn = new PDO("mysql:host={$sqllogin['host']};dbname={$sqllogin['dbname']}", $sqllogin['username'], $sqllogin['password']);
-$dbconn = mysql_connect($sqlogin['host'],$sqlogin['username'],$sqlogin['password']);
-mysql_select_db($sqlogin['dbname']);
+$dbconn = mysqli_connect($sqlogin['host'],$sqlogin['username'],$sqlogin['password']);
+mysqli_select_db($dbconn,$sqlogin['dbname']);
 
 // time for pages ..
 

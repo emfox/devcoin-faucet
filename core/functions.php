@@ -21,8 +21,8 @@ function timer () {
 
 function checkExistingIP($ip)
 {
-    $q = mysql_query("SELECT `ip` FROM `dailyltc` WHERE `ip`='{$ip}' LIMIT 1");
-    $rows = mysql_num_rows($q);
+    $q = mysqli_query($dbconn,"SELECT `ip` FROM `dailyltc` WHERE `ip`='{$ip}' LIMIT 1");
+    $rows = mysqli_num_rows($q);
     return $rows;
 }
 function is_admin()

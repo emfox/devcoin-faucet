@@ -20,15 +20,19 @@ if ( !is_admin() ) {
 } else {
     $finishing_divs = "</div></div>";
     $command = "SELECT * FROM config";
-    $q = mysql_query($command);
-    $singlepay = mysql_result($q, 0, "singlepay");
-    $round = mysql_result($q, 0, "round");
-    $totalpay = mysql_result($q, 0, "totalpay");
-    $dltc = mysql_query("SELECT * FROM `dailyltc`");
-    $rows2 = mysql_num_rows($dltc);
+    $q = mysqli_query($dbconn,$command);
+    if($q && $q->num_rows)
+    {
+        $r = $q->fetch_assoc();
+        $singlepay = $r["singlepay"];
+        $round = $r["round"];
+        $totalpay = $r["totalpay"];
+    }
+    $dltc = mysqli_query($dbconn,"SELECT * FROM `dailyltc`");
+    $rows2 = mysqli_num_rows($dltc);
     $subcommand = "SELECT * FROM subtotal";
-    $subq = mysql_query($subcommand);
-    $subrows = mysql_num_rows($subq);
+    $subq = mysqli_query($dbconn,$subcommand);
+    $subrows = mysqli_num_rows($subq);
 
    echo '
             <div style="margin-right: 20px;">
@@ -153,14 +157,12 @@ if ( !is_admin() ) {
 </tr>
 
 <?php
-    $i = 0;
-    while ($i < $rows2) {
-        $qltc = "SELECT * FROM dailyltc";
-        $herp = mysql_query($qltc);
-        $rows3 = mysql_num_rows($herp);
-        $id = mysql_result($herp, $i, "id");
-        $ltcaddres = mysql_result($herp, $i, "ltcaddress");
-        $ip = mysql_result($herp, $i, "ip");
+    $qltc = "SELECT * FROM dailyltc";
+    $herp = mysqli_query($dbconn,$qltc);
+    while ($rltc = mysqli_fetch_assoc($herp)) {
+        $id = $rltc["id"];
+        $ltcaddres = $rltc["ltcaddress"];
+        $ip = $rltc["ip"];
 ?>
 
 <tr>
@@ -170,7 +172,6 @@ if ( !is_admin() ) {
 </tr>
 
 <?php
-        $i++;
     }
 
     echo "</table>";

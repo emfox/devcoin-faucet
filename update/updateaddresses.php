@@ -7,8 +7,8 @@ include('../core/wallet.php');
 
 if(is_admin()){
     $dailytotal = $_POST['delete'];
-    mysql_query("DELETE FROM dailyltc") 
-    or die(mysql_error());
+    mysqli_query($dbconn,"DELETE FROM dailyltc") 
+    or die(mysqli_error($dbconn));
     header( 'Location: /server.php' );
 }else{
     echo "Access Denied.";
