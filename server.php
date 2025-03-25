@@ -43,9 +43,9 @@ if ( !is_admin() ) {
             <tr><td>Payout This Round: </td><td>' . $singlepay . ' DVC</td></tr>
             <tr><td>Total Payout: </td><td>' . $totalpay . ' DVC</td></tr>
             <tr><td>Total Submitted: </td><td>' . $subrows . '</td></tr> 
-            <tr><td>Donate: </td><td>' . $btclient->getbalance($don_faucet, 0) .
+            <tr><td>Donate: </td><td>' . $btclient->getreceivedbylabel($don_faucet,0) .
         ' DVC</td></tr>
-        <tr><td>Donation address: </td><td>' . $btclient->getaccountaddress($don_faucet) .
+        <tr><td>Donation address: </td><td>' . $donaddress .
         '</td></tr>  
             </table>';
     $i++;

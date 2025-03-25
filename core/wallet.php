@@ -18,7 +18,7 @@ $privatekey = "6LfYSssSAAAAAPntQz9H0twbsdyk8kQHO_F4mupD";
 
 $btclient = new jsonRPCClient("http://". $btclogin["username"] . ':' . $btclogin["password"] . '@' .$btclogin["host"] . ':' . $btclogin["port"]);
 $addr = new Address($btclient,$sqlogin);
-$derp = $btclient->getinfo();
+$derp = $btclient->getblockchaininfo();
 
 //$this->PDO_Conn = new PDO("mysql:host={$sqllogin['host']};dbname={$sqllogin['dbname']}", $sqllogin['username'], $sqllogin['password']);
 $dbconn = mysqli_connect($sqlogin['host'],$sqlogin['username'],$sqlogin['password']);

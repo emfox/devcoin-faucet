@@ -1,6 +1,7 @@
 <?php
 // Donation account
 $don_faucet = "FaucetDonations";
+$donaddress = "1EpJKJbpeoXnYGtoB8F6re78FMAtvNRWMf";
 
 // RPC Settings
 $btclogin = array("username" => "username", "password" => "pass",

@@ -7,8 +7,7 @@ include_once ('templates/header.php');
 include_once ('core/includes/simpl_html_dom.php');
 //include ('core/dnsbl.php');
 
-$donaddress = $btclient->getaccountaddress($don_faucet);
-$don = $btclient->getbalance($don_faucet, 0);
+$don = $btclient->getreceivedbylabel($don_faucet, 0);
 
 ?>
       <div class="row">
@@ -84,7 +83,7 @@ echo "<br><br><br>";
     }
 
     $cur_time=time();
-    $coins_in_account = $btclient->getbalance("FaucetDonations", 0);
+    $coins_in_account = $don;
     $list = mysqli_query($dbconn,"SELECT * FROM bitcointalk where status = 1 and next_date < '$cur_time'");
     $paynum = mysqli_num_rows($list);
     if($paynum > 0 and $coins_in_account >= 100*$paynum){
