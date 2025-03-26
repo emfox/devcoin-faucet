@@ -1,6 +1,6 @@
 vendor/
 composer.phar
-
+core/config.php
 #################
 ## Eclipse
 #################
