@@ -5,8 +5,7 @@ include("functions.php");
 $start = timer();
 
 include("config.php");
-include_once ("includes/jsonRPCClient.php");
-
+include_once ("vendor/soundasleep/jsonrpcclient/includes/jsonRPCClient.php");
 // init
 
 $btclient = new jsonRPCClient("http://". $btclogin["username"] . ':' . $btclogin["password"] . '@' .$btclogin["host"] . ':' . $btclogin["port"]);

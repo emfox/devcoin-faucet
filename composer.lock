@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8af575921824e2407c70af936e4311f4",
+    "content-hash": "0402323ea265b5b91ed2f40b6e6385c3",
     "packages": [
         {
             "name": "google/recaptcha",
@@ -57,6 +57,53 @@
                 "source": "https://github.com/google/recaptcha"
             },
             "time": "2023-02-18T17:41:46+00:00"
+        },
+        {
+            "name": "soundasleep/jsonrpcclient",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soundasleep/jsonrpcclient.git",
+                "reference": "162d06da138592ad2c0d3ef9e483e033be648726"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soundasleep/jsonrpcclient/zipball/162d06da138592ad2c0d3ef9e483e033be648726",
+                "reference": "162d06da138592ad2c0d3ef9e483e033be648726",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Jevon Wright",
+                    "homepage": "http://jevon.org",
+                    "role": "Packager"
+                },
+                {
+                    "name": "Sergio Vaccaro",
+                    "homepage": "http://jsonrpcphp.org/"
+                }
+            ],
+            "description": "A simple PHP implementation of a JSON-RPC client and server",
+            "homepage": "https://github.com/soundasleep/jsonrpcclient",
+            "keywords": [
+                "json-rpc",
+                "php",
+                "rpc"
+            ],
+            "support": {
+                "email": "info@jsonrpcphp.org",
+                "issues": "https://github.com/soundasleep/jsonrpcclient/issues",
+                "source": "http://jsonrpcphp.org/"
+            },
+            "time": "2014-05-11T23:17:17+00:00"
         }
     ],
     "packages-dev": [],
