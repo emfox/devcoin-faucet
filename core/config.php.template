@@ -1,6 +1,6 @@
 <?php
 // Donation account
-$don_faucet = "FaucetDonations";
+$don_label = "FaucetDonations";
 $donaddress = "1EpJKJbpeoXnYGtoB8F6re78FMAtvNRWMf";
 
 // RPC Settings

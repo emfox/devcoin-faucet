@@ -7,7 +7,7 @@ include_once ('templates/header.php');
 include_once ('core/includes/simpl_html_dom.php');
 //include ('core/dnsbl.php');
 
-$don = $btclient->getreceivedbylabel($don_faucet, 0);
+$don = $btclient->getreceivedbylabel($don_label, 0);
 
 ?>
       <div class="row">
@@ -65,7 +65,7 @@ if($not_new!==false)
         $next_pay_time=time()+(144+rand(0,48))*3600;
         mysqli_query($dbconn,"insert into bitcointalk (uid, status,address,next_date)
                    values ('$bt_id', '1', '$address','$next_pay_time')") or die(mysqli_error($dbconn));
-        $btclient->sendfrom("FaucetDonations",$address,50);
+        $btclient->sendtoaddress($address,50);
         echo "We've now paid you 50 DVCs out, another 100 DVCs will be send several days later.";
       }else{
         echo "This account is already submitted!";
@@ -95,7 +95,7 @@ echo "<br><br><br>";
 	  mysqli_query($dbconn,"update bitcointalk set status=3 where uid=" . $listw['uid']);
 	}
       }
-      $btclient->sendmany("FaucetDonations", $addr_list);
+      $btclient->sendmany("", $addr_list);
       mysqli_query($dbconn,"update bitcointalk set status=2 where status = 1 and next_date < '$cur_time'");
     }
 
@@ -117,13 +117,13 @@ echo "<br><br><br>";
                 $res = mysqli_fetch_array($q);
                 $list = mysqli_query($dbconn,"SELECT * FROM dailyltc");
 
-                $coins_in_account = $btclient->getbalance("FaucetDonations", 0);
+                $coins_in_account = $btclient->getreceivedbylabel($don_label,0);
                 if ($coins_in_account >= ($res['singlepay'] * $rows)) {
 		    $addr_list = array();
                     while ($listw = mysqli_fetch_array($list)) {
 		      $addr_list[$listw['ltcaddress']] = doubleval($res['singlepay']);
                     }
-		    $btclient->sendmany("FaucetDonations", $addr_list);
+		    $btclient->sendmany("", $addr_list);
                     $n = ordinal(mysqli_num_rows($list));
                     echo srsnot("Congratulations, you were the {$n} in the round, the round has been reset and payouts have been sent.");
                     mysqli_query($dbconn,"TRUNCATE dailyltc");
@@ -143,10 +143,6 @@ echo "<br><br><br>";
                 }
             }
 
-            //echo "printan.";
-
-            //echo "printed.";
-            // echo "</table>";
             echo "You will get your DVC at the end of this round<br />There are $rows submitted addresses in this round!<br>";
             echo "<br>If you want to donate to the Faucet: $donaddress (recv: $don)";
         }

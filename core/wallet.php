@@ -10,7 +10,9 @@ include_once ("includes/jsonRPCClient.php");
 // init
 
 $btclient = new jsonRPCClient("http://". $btclogin["username"] . ':' . $btclogin["password"] . '@' .$btclogin["host"] . ':' . $btclogin["port"]);
-$derp = $btclient->getblockchaininfo();
+$info_blockchain = $btclient->getblockchaininfo();
+$info_network = $btclient->getnetworkinfo();
+$info_wallet = $btclient->getwalletinfo();
 
 //$this->PDO_Conn = new PDO("mysql:host={$sqllogin['host']};dbname={$sqllogin['dbname']}", $sqllogin['username'], $sqllogin['password']);
 $dbconn = mysqli_connect($sqlogin['host'],$sqlogin['username'],$sqlogin['password']);

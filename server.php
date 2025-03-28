@@ -43,12 +43,11 @@ if ( !is_admin() ) {
             <tr><td>Payout This Round: </td><td>' . $singlepay . ' DVC</td></tr>
             <tr><td>Total Payout: </td><td>' . $totalpay . ' DVC</td></tr>
             <tr><td>Total Submitted: </td><td>' . $subrows . '</td></tr> 
-            <tr><td>Donate: </td><td>' . $btclient->getreceivedbylabel($don_faucet,0) .
+            <tr><td>Donate: </td><td>' . $btclient->getreceivedbylabel($don_label,0) .
         ' DVC</td></tr>
         <tr><td>Donation address: </td><td>' . $donaddress .
         '</td></tr>  
             </table>';
-    $i++;
 
 ?>
             <div style="margin-right: 20px;">
@@ -79,23 +78,19 @@ if ( !is_admin() ) {
             <div style="margin-right: 20px;">
             <h3>Bitcoind statistics</h3>
             <table class=\'zebra-striped\'>
-            <tr><td>Server balance total: </td><td>' . $derp['balance'] .
+            <tr><td>Server balance total: </td><td>' . $info_wallet['balance'] .
         ' LTC</td></tr>
-            <tr><td>Server connections: </td><td>' . $derp['connections'] .
+            <tr><td>Server connections: </td><td>' . $info_network['connections'] .
         '</td></tr>
-            <tr><td>Server version: </td><td>' . $derp['version'] . '</td></tr>
-            <tr><td>Server protocolversion: </td><td>' . $derp['protocolversion'] .
+            <tr><td>Server version: </td><td>' . $info_network['version'] . '</td></tr>
+            <tr><td>Server protocolversion: </td><td>' . $info_network['protocolversion'] .
         '</td></tr>
-            <tr><td>Server keypoololdest: </td><td>' . $derp['keypoololdest'] .
+            <tr><td>Server keypoololdest: </td><td>' . $info_wallet['keypoololdest'] .
         '</td></tr>
-            <tr><td>Server keypoolsize: </td><td>' . $derp['keypoolsize'] .
+            <tr><td>Server keypoolsize: </td><td>' . $info_wallet['keypoolsize'] .
         '</td></tr>
-            <tr><td>Server paytxfee: </td><td>' . $derp['paytxfee'] .
+            <tr><td>Server paytxfee: </td><td>' . $info_wallet['paytxfee'] .
         '</td></tr>
-            <tr><td>Server minimun input: </td><td>' . $derp['mininput'] .
-        '</td></tr>
-            <tr><td>Server errors: </td><td>' . $derp['errors'] . '</td></tr>
-            
             </table>';
 
     echo '<h3>Other information</h3>
@@ -123,29 +118,11 @@ if ( !is_admin() ) {
 
     foreach ($dump as $herp) {
         echo "<tr><td>" . $herp['confirmations'] . "</td><td><input type='text' value='" .
-            $herp['address'] . "' /></td><td>" . $herp['amount'] . "</td><td>" . ($herp['fee'] ?
+            $herp['address'] . "' /></td><td>" . $herp['amount'] . "</td><td>" . (array_key_exists('fee',$herp) ?
             $herp["fee"] : 0) . "</td><td><input type='text' value='" . $herp['txid'] .
             "' /></td></tr>";
     }
     echo "</table>";
-    /**
-     * foreach($dump as $ky) {
-     * $z = array_keys($dump);
-     * if(!$i) $i = 0;
-     * echo "<tr><td>" . $z[$i] . "</td><td>" . $ky[0] . "</td></tr>";
-     * $i++;
-     * }*/
-    // print_r($dump);
-    //foreach ($dump as $herp) {
-    //echo "<tr><td>" . $herp['category'] . "</td><td><input type='text' value='" . $herp['address'] . "' /></td><td>". $herp['amount'] . "</td><td>" . $herp['confirmations'] . "</td><td>" . $herp['fee'] . "</td><td><input type='text' value='" . $herp['txid'] . "' /></td></tr>";
-    //}
-
-
-    // $transactions = $btclient->query('listtransactions', '', '240');
-    //$numAccounts = count($transactions);
-    // for ($i = 0; $i < $numAccounts; $i++) {
-    //echo "lol";
-    // }
 
     echo "<center><h3>Submitted addresses in round</h3></center><br>";
 ?>
