@@ -5,7 +5,6 @@
 include ('core/banned.php');
 include ('core/wallet.php');
 include ('templates/header.php');
-include ('core/includes/simpl_html_dom.php');
 //include ('core/dnsbl.php');
 
 ?>

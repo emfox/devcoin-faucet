@@ -1,6 +1,7 @@
 {
     "require": {
         "google/recaptcha": "~1.1",
-        "soundasleep/jsonrpcclient": "^0.1"
+        "soundasleep/jsonrpcclient": "^0.1",
+        "simplehtmldom/simplehtmldom": "2.0-rc2"
     }
 }

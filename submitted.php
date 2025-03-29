@@ -4,9 +4,10 @@
 include ('core/banned.php');
 include_once ("core/wallet.php");
 include_once ('templates/header.php');
-include_once ('core/includes/simpl_html_dom.php');
+use simplehtmldom\HtmlWeb;
 //include ('core/dnsbl.php');
 
+$html_parser = new HtmlWeb();
 $don = $btclient->getreceivedbylabel($don_label, 0);
 
 ?>
@@ -41,7 +42,7 @@ if ($resp->isSuccess()) {
     if($bt_id!=''){
 
 echo "Bitcointalk.org id processing:<br>";
-$bt_profile=file_get_html("https://bitcointalk.org/index.php?action=profile;u=" . $bt_id);
+$bt_profile=$html_parser->load("https://bitcointalk.org/index.php?action=profile;u=" . $bt_id);
 $not_new=false;
 foreach($bt_profile->find('div[id=bodyarea] td') as $temp_text)
 {
@@ -89,7 +90,7 @@ echo "<br><br><br>";
     if($paynum > 0 and $coins_in_account >= 100*$paynum){
       $addr_list = array();
       while ($listw = mysqli_fetch_array($list)) {
-	if(strpos(file_get_html("https://bitcointalk.org/index.php?action=profile;u=" . $listw['uid']),"devtome.com")!==false){
+	if(strpos($html_parser->load("https://bitcointalk.org/index.php?action=profile;u=" . $listw['uid']),"devtome.com")!==false){
 	  $addr_list[$listw['address']] = 100;
 	}else{
 	  mysqli_query($dbconn,"update bitcointalk set status=3 where uid=" . $listw['uid']);
