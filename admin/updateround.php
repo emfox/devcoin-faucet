@@ -3,7 +3,7 @@
  * @author Greedi
  * @copyright 2012
  */
-include('../core/wallet.php');
+require_once __DIR__ . '/../core/wallet.php';
 
 if(is_admin()){
     $round = $_POST['round'];
@@ -11,7 +11,7 @@ if(is_admin()){
     $result = mysqli_query($dbconn,"UPDATE config SET round = $round") 
     or die(mysqli_error($dbconn));
     
-    header( 'Location: /server.php' );
+    header( 'Location: /admin/server.php' );
 }else{
     echo "Access Denied.";
 }

@@ -2,8 +2,8 @@
 /**
  * @copyright Greedi 2012, Emfox Zhou 2013-2025
  */
-include ('core/wallet.php');
-include ('templates/header.php');
+
+require_once __DIR__ . '/templates/header.php';
 
 ?>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -34,7 +34,7 @@ include ('templates/header.php');
           </form>
         </div>
 <?php
-include ("templates/sidebar.php");
-include ('templates/footer.php');
+require_once __DIR__ . '/templates/sidebar.php';
+require_once __DIR__ . '/templates/footer.php';
 ?>
 

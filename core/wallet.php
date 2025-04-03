@@ -1,11 +1,11 @@
 <?php
 // LTC WALLET
 session_start();
-include("functions.php");
+require_once __DIR__ . '/functions.php';
 $start = timer();
 
-include("config.php");
-include_once ("vendor/soundasleep/jsonrpcclient/includes/jsonRPCClient.php");
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/../vendor/soundasleep/jsonrpcclient/includes/jsonRPCClient.php';
 // init
 
 $btclient = new jsonRPCClient("http://". $btclogin["username"] . ':' . $btclogin["password"] . '@' .$btclogin["host"] . ':' . $btclogin["port"]);

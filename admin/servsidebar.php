@@ -1,5 +1,5 @@
 <?php
-include ('core/daily.php');
+require_once __DIR__ . '/../core/daily.php';
 ?>
         <div class="col-sm-4"> <!-- This is the servsidebar, don't forget -_- -->
           <table class="table table-striped">

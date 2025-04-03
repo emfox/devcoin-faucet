@@ -9,8 +9,7 @@ $uptime = explode(' up ', $data);
 $uptime = explode(',', $uptime[1]);
 $uptime = $uptime[0] . ', ' . $uptime[1];
 
-include ("core/wallet.php");
-include ('templates/header.php');
+require_once __DIR__ . '/../templates/header.php';
 ?>
       <div class="row">
         <div class="col-sm-8">
@@ -53,22 +52,22 @@ if ( !is_admin() ) {
             <div style="margin-right: 20px;">
             <h3>Daily settings</h3>
             <table class=\'zebra-striped\'>
-    <form action="update/updatesinglepay.php" method="post">
+    <form action="updatesinglepay.php" method="post">
     <input type="hidden" name="ud_id" value="">
     Round Price: <input type="text" name="singlepay" value="">
     <input type="Submit" value="Update">
     </form></table>
-    <form action="update/updatetotal.php" method="post">
+    <form action="updatetotal.php" method="post">
     <input type="hidden" name="ud_id" value="">
     Total Paid Out: <input type="text" name="totalpay" value="">
     <input type="Submit" value="Update">
     </form></table>
-    <form action="update/updateround.php" method="post">
+    <form action="updateround.php" method="post">
     <input type="hidden" name="ud_id" value="">
     Current Round: <input type="text" name="round" value="">
     <input type="Submit" value="Update">
     </form></table>
-    <form action="update/updateaddresses.php" method="post">
+    <form action="updateaddresses.php" method="post">
     <input type="hidden" name="ud_id" value="">
     Delete Round: <input type="Submit" value="Update">
     </form></table>
@@ -157,7 +156,8 @@ if ( !is_admin() ) {
 ?>
 <?php
 echo $finishing_divs;
-    include ('templates/servsidebar.php');
+    require_once __DIR__ . '/servsidebar.php';
+    require_once __DIR__ . '/../templates/footer.php';
 }
 
 ?>

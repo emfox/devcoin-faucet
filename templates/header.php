@@ -1,6 +1,7 @@
 <?php
 //ini_set("display_errors", 1);
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../core/wallet.php';
 ?>
 <!DOCTYPE html>
 
@@ -38,7 +39,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
         <div>
           <ul class="nav navbar-nav" id="nav-list">
           <li><a href="/">Faucet</a></li>
-          <?php if (is_admin()) echo '<li><a href="/server.php">Server</a></li>' ?>
+          <?php if (is_admin()) echo '<li><a href="admin/server.php">Admin</a></li>' ?>
           </ul>
           <script type="text/javascript">
             $("#nav-list").find("li").each(function () {

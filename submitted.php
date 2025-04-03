@@ -1,8 +1,7 @@
 <?php
 
  error_reporting(E_ALL);
-include_once ("core/wallet.php");
-include_once ('templates/header.php');
+require_once __DIR__ . '/templates/header.php';
 use simplehtmldom\HtmlWeb;
 
 $html_parser = new HtmlWeb();
@@ -31,8 +30,8 @@ if ($resp->isSuccess()) {
     if (!ctype_alnum($address) OR $isvalid['isvalid'] != '1') {
         echo "Invalid Address: {$address}";
         echo "</center></div>";
-        include ('templates/sidebar.php');
-        include ('templates/footer.php');
+        require_once __DIR__ . '/templates/sidebar.php';
+        require_once __DIR__ . '/templates/footer.php';
         die();
     } else {
     $bt_id = filter_var($_POST['BTorg'], FILTER_SANITIZE_NUMBER_INT);
@@ -130,14 +129,14 @@ echo "<br><br><br>";
                     $totalc = $res['singlepay'] * $rows;
                     mysqli_query($dbconn,"UPDATE config set totalpay=totalpay+{$totalc}");
                     echo "</center></div>";
-                    include ('templates/sidebar.php');
-                    include ('templates/footer.php');
+                    require_once __DIR__ . '/templates/sidebar.php';
+                    require_once __DIR__ . '/templates/footer.php';
                     die();
                 } else {
                     echo srserr("Uh oh, looks like we haven't got enough donations to pay out. The round will continue until there's enough to pay out.");
                     echo "</center></div>";
-                    include ('templates/sidebar.php');
-                    include ('templates/footer.php');
+                    require_once __DIR__ . '/templates/sidebar.php';
+                    require_once __DIR__ . '/templates/footer.php';
                     die();
                 }
             }
@@ -153,8 +152,8 @@ echo "<br><br><br>";
 </center>
       </div>
 <?php
-include ('templates/sidebar.php');
-include ('templates/footer.php');
+require_once __DIR__ . '/templates/sidebar.php';
+require_once __DIR__ . '/templates/footer.php';
 ?>
 
 
