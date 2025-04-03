@@ -1,11 +1,9 @@
 <?php
 
  error_reporting(E_ALL);
-include ('core/banned.php');
 include_once ("core/wallet.php");
 include_once ('templates/header.php');
 use simplehtmldom\HtmlWeb;
-//include ('core/dnsbl.php');
 
 $html_parser = new HtmlWeb();
 $don = $btclient->getreceivedbylabel($don_label, 0);

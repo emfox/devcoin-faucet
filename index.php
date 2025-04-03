@@ -1,11 +1,9 @@
 <?php
 /**
- * @copyright Greedi 2012, Emfox Zhou 2013-2018
+ * @copyright Greedi 2012, Emfox Zhou 2013-2025
  */
-include ('core/banned.php');
 include ('core/wallet.php');
 include ('templates/header.php');
-//include ('core/dnsbl.php');
 
 ?>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>

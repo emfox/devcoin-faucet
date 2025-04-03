@@ -53,11 +53,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
           <p class="navbar-text navbar-right small">
             Blockcount: <?php echo number_format($info_blockchain["blocks"]);?> 
             - Difficulty: <?php echo $info_blockchain['difficulty'];?> 
-            - Estimate time of next round: <?php $varb = $info_blockchain["blocks"];
-            $vart =1375479729+(time()-1375479729)*(ceil(($varb+1)/4000)*4000-100000)/($varb-100000);
-            echo date('Y-m-d H:i:s',$vart);
-            //block 100000 generated at unix time 1375479729
-            ?>
           </p>
         </div>
       </div>
