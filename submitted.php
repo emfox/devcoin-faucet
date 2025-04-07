@@ -5,7 +5,6 @@ require_once __DIR__ . '/templates/header.php';
 use simplehtmldom\HtmlWeb;
 
 $html_parser = new HtmlWeb();
-$don = $btclient->getreceivedbylabel($don_label, 0);
 
 ?>
       <div class="row">
@@ -13,7 +12,7 @@ $don = $btclient->getreceivedbylabel($don_label, 0);
 <center>
 <br />
 <?php
-$ip = $_SERVER['REMOTE_ADDR'];
+
 function ordinal($a)
 {
     $b = abs($a);
@@ -22,9 +21,23 @@ function ordinal($a)
         ($c < 1) ? 'th' : 'st' : 'nd' : 'rd' : 'th'));
     return $a . $e;
 }
-$recaptcha = new \ReCaptcha\ReCaptcha($recaptcha_secret);
-$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
-if ($resp->isSuccess()) {
+
+$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$recaptcha_secret_key."&response=".$_POST['recaptcha_token']);
+$responseData = json_decode($response);
+
+if($responseData->success && $responseData->score >= 0.5){
+    // User is likely human; process form submission
+    proceed_round();
+}else{
+    // Possible bot or suspicious activity; abort form submission
+    echo srserr("INVALID CAPTCHA. <a href='index.php'>Go back</a>");
+}
+
+function proceed_round(){
+    global $btclient, $don_label, $donaddress, $dbconn;
+    $don = $btclient->getreceivedbylabel($don_label, 0);
+    $ip = $_SERVER['REMOTE_ADDR'];
+
     $address=htmlspecialchars(trim($_POST['DVC']));
     $isvalid = $btclient->validateaddress($address);
     if (!ctype_alnum($address) OR $isvalid['isvalid'] != '1') {
@@ -143,10 +156,7 @@ echo "<br><br><br>";
 
             echo "You will get your DVC at the end of this round<br />There are $rows submitted addresses in this round!<br>";
             echo "<br>If you want to donate to the Faucet: $donaddress (recv: $don)";
-        }
-    
-} else { // Wrong answer, you may display a new AdsCaptcha and add an error message
-    echo srserr("INVALID CAPTCHA. <a href='index.php'>Go back</a>");
+        }   
 }
 ?>
 </center>

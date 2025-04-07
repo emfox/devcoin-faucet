@@ -12,8 +12,8 @@ $sqlogin = array("host" => "localhost", "dbname" => "faucet", "username" =>
     "root", "password" => "Pass");
 
 //Google recaptcha key
-$recaptcha_key = "your_recaptcha_key";
-$recaptcha_secret = "your_recaptcha_secret";
+$recaptcha_site_key = "your_recaptcha_site_key";
+$recaptcha_secret_key = "your_recaptcha_secret_key";
 
 $admin_ip = array('127.0.0.1','172.16.0.2');
 ?>

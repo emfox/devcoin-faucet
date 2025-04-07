@@ -6,7 +6,15 @@
 require_once __DIR__ . '/templates/header.php';
 
 ?>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render=<?php echo $recaptcha_site_key; ?>"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('<?php echo $recaptcha_site_key; ?>', {action: 'submit'}).then(function(token) {
+            // Send the token to your server
+            document.getElementById('recaptcha-token').value = token;
+        });
+    });
+</script>
       <div class="row">
         <div class="col-sm-8">
           <h1>The Devcoin Faucet</h1>
@@ -27,7 +35,7 @@ require_once __DIR__ . '/templates/header.php';
             </div>
             <div class="form-group">
               <div class="col-sm-8 col-sm-offset-4">
-                <div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_key; ?>"></div>
+                <input type="hidden" name="recaptcha_token" id="recaptcha-token"/>
                 <input type="submit" class="btn btn-default" value="Submit">
               </div>
             </div>
