@@ -25,7 +25,7 @@ function ordinal($a)
 $recaptcha = new \ReCaptcha\ReCaptcha($recaptcha_secret);
 $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 if ($resp->isSuccess()) {
-    $address=filter_var(trim($_POST['DVC']),FILTER_SANITIZE_STRING);
+    $address=htmlspecialchars(trim($_POST['DVC']));
     $isvalid = $btclient->validateaddress($address);
     if (!ctype_alnum($address) OR $isvalid['isvalid'] != '1') {
         echo "Invalid Address: {$address}";
