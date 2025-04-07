@@ -1,6 +1,8 @@
-vendor/
-composer.phar
-core/config.php
+/vendor/
+/composer.phar
+/core/config.php
+/mysql-data/
+/db_password.txt
 #################
 ## Eclipse
 #################
